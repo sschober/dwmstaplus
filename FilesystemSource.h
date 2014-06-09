@@ -1,14 +1,15 @@
 #pragma once
+#include <fstream>
 #include "InfoSource.h"
 
 class FilesystemSource : public InfoSource {
-  string path;
+  std::string path;
   public:
-    FilesystemSource(string p) : path(p) {}
-    string get(){
-      ifstream file(path.c_str());
+    FilesystemSource(std::string p) : path(p) {}
+    std::string get(){
+      std::ifstream file(path.c_str());
       if(file.good()){
-        string ln;
+        std::string ln;
         if(getline(file,ln)){
           return ln;
         }

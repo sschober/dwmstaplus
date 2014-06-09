@@ -1,5 +1,6 @@
 #pragma once
+#include <string>
 struct InfoSource {
-  virtual string get() = 0;
+  virtual std::string get() = 0;
 };
 
