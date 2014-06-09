@@ -23,11 +23,6 @@ void set_status(Display *dpy, string status_line){
 
 int main(){
   typedef TypeList<BatteryInfo, TypeList<LoadInfo, TypeList<TimeInfo, NullType> > > InfoModules;
-  InfoSource* sources[Length<InfoModules>::value];
-
-  for(unsigned int i = 0; i < Length<InfoModules>::value; i ++){
-    sources[i] = new TypeAt<InfoModules,i>::Result;
-  }
 
   Display *dpy = XOpenDisplay(NULL);
   if(!dpy){
@@ -37,10 +32,7 @@ int main(){
 
   for(;;sleep(2)){
     ostringstream status_line;
-    for(unsigned int i = 0; i < Length<InfoModules>::value; i ++){
-      sources[i] = new TypeAt<InfoModules,0>::Result;
-      status_line << sources[i]->get() << " | ";
-    }
+    status_line << InfoModules().get();
     set_status(dpy, status_line.str());
   }
 }

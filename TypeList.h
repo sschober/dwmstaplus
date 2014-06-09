@@ -3,9 +3,12 @@ template <class T, class U>
 struct TypeList {
   typedef T head;
   typedef U tail;
+  string get(){ return T().get() + U().get();}
 };
 
-class NullType {};
+struct NullType {
+  string get(){ return ""; }
+};
 
 // LENGTH
 //
