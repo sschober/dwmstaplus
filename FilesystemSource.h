@@ -2,8 +2,10 @@
 #include "InfoSource.h"
 
 class FilesystemSource : public InfoSource {
-  protected:
-    string get_proc_file_line(string path){
+  string path;
+  public:
+    FilesystemSource(string p) : path(p) {}
+    string get(){
       ifstream file(path.c_str());
       if(file.good()){
         string ln;
