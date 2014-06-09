@@ -19,7 +19,7 @@ options:
 ${OBJ}: config.mk
 
 ${NAME}: ${SRC}
-	@${CC} -o $@ ${SRC} ${CFLAGS} ${LDFLAGS}
+	@${CC} -o $@ ${SRC} ${CPPFLAGS} ${CFLAGS} ${LDFLAGS}
 
 clean:
 	@echo cleaning
