@@ -1,13 +1,8 @@
 #include <iostream>
 #include <unistd.h>
 
-#include "BatteryInfo.h"
-#include "LoadInfo.h"
-#include "TimeInfo.h"
-#include "Chain.h"
 #include "X11.h"
-
-typedef Chain<BatteryInfo, Chain<LoadInfo, TimeInfo> > InfoModules;
+#include "config.h"
 
 int main(){
 
@@ -18,7 +13,7 @@ int main(){
     return 1;
   }
 
-  for(;;sleep(2)){
+  for(;;sleep(SLEEP_TIME)){
     x11.set_status(InfoModules().get());
   }
 }
