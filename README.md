@@ -3,6 +3,10 @@
 A small, easily extensible and efficient (as is yet to be proven)
 [dwm](http://dwm.suckless.org) status bar information provider.
 
+Motivation to write this little tool was getting up to speed with c++11 and template metaprogramming as proposed by ["Modern C++ Design: Generic Programming and Design Patterns Applied" by A. Alexandrescu](http://en.wikipedia.org/wiki/Modern_C%2B%2B_Design).
+
+(BTW: The name is an acronym of "DWM SAtusbar in c PLUS plus" - yeah, I'm a creative guy. *g*)
+
 # Requirements
 
 - X11/Xlib header files
