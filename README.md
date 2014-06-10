@@ -3,9 +3,17 @@
 A small, easily extensible and efficient (as is yet to be proven)
 [dwm](http://dwm.suckless.org) status bar information provider.
 
+# Requirements
+
+- X11/Xlib header files
+- c++11 compatible C++ compiler
+- dwm (sort of - you don't acutally need dwm as such, any other WM using the X11 root window name as statusbar info would do :) )
+
 # Installation
 
-The usual
+Take a look at `config.mk` and adapt it to your system.
+
+Then usual
 
 ````
 make
