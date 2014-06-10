@@ -5,6 +5,7 @@
 #include "BatteryInfo.h"
 #include "LoadInfo.h"
 #include "TimeInfo.h"
+#include "MemFreeInfo.h"
 
 #ifndef SLEEP_TIME
 #define SLEEP_TIME 2
@@ -12,4 +13,7 @@
 
 // Defines the presence and order of information sources to be
 // displayed in the statusbar
-typedef Chain<BatteryInfo, Chain<LoadInfo, TimeInfo> > InfoModules;
+typedef Chain< MemFreeInfo,
+        Chain< BatteryInfo,
+        Chain< LoadInfo,
+               TimeInfo > > > InfoModules;

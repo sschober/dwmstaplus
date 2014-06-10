@@ -23,6 +23,7 @@ Currently there are the following `InfoSource`s:
 
 - `BatteryInfo`
 - `LoadInfo`
+- `MemInfo`
 - `TimeInfo`
 
 # Extending

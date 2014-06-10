@@ -18,7 +18,7 @@ LIBS = -lpthread -L${X11LIB} -lX11
 
 # flags
 CPPFLAGS = -DSLEEP_TIME=${SLEEP_TIME} -DVERSION=\"${VERSION}\" ${INCS}
-CFLAGS = -std=c++11
+CFLAGS = -std=c++11 -fpermissive
 LDFLAGS = ${LIBS}
 
 # compiler and linker

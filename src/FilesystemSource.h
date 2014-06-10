@@ -23,11 +23,24 @@ class FilesystemSource : public InfoSource {
       ifstream file(path.c_str());
       if(file.good()){
         string ln;
-        if(getline(file,ln)){
-          return ln;
+        while(getline(file,ln)){
+          string m( match(ln) );
+          if(!m.empty()){
+            return m;
+          }
         }
       }
       return "";
     }
+
+    /**
+     * Predicate that decides if line in file is the one of
+     * interest. This default implementation always returns true, so
+     * the first line will be returned by `get()`.
+     */
+    virtual string match( string ln ) const {
+      return ln;
+    }
+
 };
 
