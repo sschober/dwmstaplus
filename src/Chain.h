@@ -1,10 +1,20 @@
 #pragma once
+
 #include <string>
+#include <ostream>
+
+using std::string;
+using std::ostream;
+
 template <class T, class U>
-struct Chain {
-  typedef T head;
-  typedef U tail;
+class Chain {
+  U u;
+  T t;
+  public:
+  string get(){ return T().get() + " | " + U().get();}
   // TODO: kann man den Delimiter noch konfigurabel machen?
-  std::string get(){ return T().get() + " | " + U().get();}
+  friend inline ostream& operator<<( ostream &os, const Chain<T,U> &c ){
+    return os << c.u << " | " << c.t;
+  }
 };
 

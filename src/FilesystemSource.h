@@ -1,20 +1,29 @@
 #pragma once
 #include <fstream>
+#include <ostream>
+
 #include "InfoSource.h"
 
+using std::string;
+using std::ifstream;
+using std::ostream;
+
 class FilesystemSource : public InfoSource {
-  std::string path;
+  string path;
   public:
     FilesystemSource(std::string p) : path(p) {}
-    std::string get(){
-      std::ifstream file(path.c_str());
+    string get(){
+      ifstream file(path.c_str());
       if(file.good()){
-        std::string ln;
+        string ln;
         if(getline(file,ln)){
           return ln;
         }
       }
       return "";
+    }
+    virtual ostream& operator<<( ostream &os ){
+      return os << get();
     }
 };
 

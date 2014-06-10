@@ -1,6 +1,12 @@
 #pragma once
 #include <string>
+#include <ostream>
+
+using std::string;
+using std::ostream;
+
 struct InfoSource {
-  virtual std::string get() = 0;
+  virtual string get() = 0;
+  virtual ostream& operator<<( ostream &os ) = 0;
 };
 
