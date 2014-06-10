@@ -8,11 +8,18 @@ using std::string;
 using std::ifstream;
 using std::ostream;
 
+/**
+ * Reads first line of file
+ *
+ * The file to be read has to be configured by a concrete sub-class
+ *
+ */
+
 class FilesystemSource : public InfoSource {
   string path;
   public:
     FilesystemSource(std::string p) : path(p) {}
-    string get(){
+    string get() const {
       ifstream file(path.c_str());
       if(file.good()){
         string ln;
@@ -21,9 +28,6 @@ class FilesystemSource : public InfoSource {
         }
       }
       return "";
-    }
-    virtual ostream& operator<<( ostream &os ){
-      return os << get();
     }
 };
 

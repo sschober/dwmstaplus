@@ -11,8 +11,16 @@ using std::setfill;
 using std::setw;
 using std::ostream;
 
+/**
+ * TimeInfo InfoSource
+ *
+ * Uses time() and localtime() to construct a local date and time
+ * string.
+ *
+ */
+
 struct TimeInfo : public InfoSource {
-  string get(){
+  string get() const {
     time_t t = time(0);
     struct tm * now = localtime(&t);
     ostringstream res;
@@ -25,12 +33,6 @@ struct TimeInfo : public InfoSource {
       << setw(2) << now->tm_min   << ":"
       << setw(2) << now->tm_sec;
     return res.str();
-  }
-  virtual ostream& operator<<( ostream &os ){
-    return os << get();
-  }
-  friend ostream& operator<<( ostream &os, TimeInfo &ti ){
-    return os << ti.get();
   }
 };
 

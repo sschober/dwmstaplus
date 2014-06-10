@@ -9,6 +9,15 @@ using std::cerr;
 using std::endl;
 using std::ostringstream;
 
+
+/**
+ * Main-Loop
+ *
+ * Initializes X11 class and InfoModules-Chain and loops forever.
+ * Sleeps for SLEEP_TIME seconds and reads from InfoModules and
+ * writes acquired information to X11 using our X11 class.
+ *
+ */
 int main(){
 
   X11 x11;
