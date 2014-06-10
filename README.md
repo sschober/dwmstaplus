@@ -1,7 +1,7 @@
 # dwmstaplus
 
 A small, easily extensible and efficient (as is yet to be proven)
-[dwm](dwm.suckless.org) status bar information provider.
+[dwm](http://dwm.suckless.org) status bar information provider.
 
 # Installation
 
