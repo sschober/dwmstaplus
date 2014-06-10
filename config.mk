@@ -14,11 +14,11 @@ X11LIB = /usr/X11R6/lib
 
 # includes and libs
 INCS = -I src/ -I src/modules
-LIBS = -lpthread -L${X11LIB} -lX11
+LIBS = -L${X11LIB} -lX11
 
 # flags
 CPPFLAGS = -DSLEEP_TIME=${SLEEP_TIME} -DVERSION=\"${VERSION}\" ${INCS}
-CFLAGS = -std=c++11 -fpermissive
+CFLAGS = -std=c++11
 LDFLAGS = ${LIBS}
 
 # compiler and linker
