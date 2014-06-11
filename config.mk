@@ -9,7 +9,7 @@ X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib
 
 # includes and libs
-INCS = -I src/ -I src/modules
+INCS = -I src/ -I src/modules -I src/decorators
 LIBS = -L${X11LIB} -lX11
 
 # flags
