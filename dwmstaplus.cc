@@ -22,11 +22,20 @@ using std::ostringstream;
 int main(int argc, char* argv[]){
 
   bool consoleOutputMode = false;
+  bool showVersion = false;
 
   for(int i = 0; i < argc; i++){
     if( 0 == strcmp(argv[i],"-c") ){
       consoleOutputMode = true;
     }
+    else if( 0 == strcmp(argv[i],"-v") ){
+      showVersion = true;
+    }
+  }
+
+  if(showVersion){
+    cout << NAME << " - version " << VERSION << endl;
+    return 0;
   }
 
   X11 x11;
