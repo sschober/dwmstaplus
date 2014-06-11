@@ -9,8 +9,6 @@ using std::string;
 using std::regex;
 using std::regex_match;
 using std::smatch;
-using std::stoi;
-using std::to_string;
 
 /**
  * MemFreeInfo InfoSource
@@ -34,12 +32,6 @@ class MemFreeInfo : public FilesystemSource {
       smatch sm;
       if(regex_match( ln, sm, re_memfree )){
         if( 1 < sm.size() ){
-#ifdef MEM_FREE_INFO_HUMAN_READABLE
-          if( string(sm[1]).size() > 5 ){
-            int kbytes = stoi( sm[1] );
-            return to_string( kbytes / 1024 ) + " MB";
-          }
-#endif
           return string(sm[1]) + " KB";
         }
       }
