@@ -25,7 +25,9 @@ struct TimeInfo : public InfoSource {
     struct tm * now = localtime(&t);
     ostringstream res;
     res << setfill('0')
+#ifdef TIME_INFO_SHOW_CALENDAR_WEEK
       << "KW "   << ( now->tm_yday / 7 ) + 1 << " | "
+#endif
       << setw(2) << now->tm_mday  << "."
       << setw(2) << now->tm_mon   << "."
       << setw(4) << now->tm_year + 1900

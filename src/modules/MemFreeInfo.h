@@ -12,10 +12,6 @@ using std::smatch;
 using std::stoi;
 using std::to_string;
 
-#ifndef HUMAN_READABLE
-#define HUMAN_READABLE true
-#endif
-
 /**
  * MemFreeInfo InfoSource
  *
@@ -38,10 +34,12 @@ class MemFreeInfo : public FilesystemSource {
       smatch sm;
       if(regex_match( ln, sm, re_memfree )){
         if( 1 < sm.size() ){
-          if( HUMAN_READABLE && string(sm[1]).size() > 5 ){
+#ifdef MEM_FREE_INFO_HUMAN_READABLE
+          if( string(sm[1]).size() > 5 ){
             int kbytes = stoi( sm[1] );
             return to_string( kbytes / 1024 ) + " MB";
           }
+#endif
           return string(sm[1]) + " KB";
         }
       }
