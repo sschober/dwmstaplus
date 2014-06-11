@@ -5,6 +5,7 @@
 #include "X11.h"
 #include "config.h"
 
+using std::cout;
 using std::cerr;
 using std::endl;
 using std::ostringstream;
@@ -18,7 +19,15 @@ using std::ostringstream;
  * writes acquired information to X11 using our X11 class.
  *
  */
-int main(){
+int main(int argc, char* argv[]){
+
+  bool consoleOutputMode = false;
+
+  for(int i = 0; i < argc; i++){
+    if( 0 == strcmp(argv[i],"-c") ){
+      consoleOutputMode = true;
+    }
+  }
 
   X11 x11;
   InfoModules modules;
@@ -31,6 +40,11 @@ int main(){
   for(;;sleep(SLEEP_TIME)){
     ostringstream os;
     os << modules;
-    x11.set_status(os.str());
+    if(consoleOutputMode){
+      cout << os.str() << endl;
+    }
+    else{
+      x11.set_status(os.str());
+    }
   }
 }
