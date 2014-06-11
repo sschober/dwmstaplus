@@ -2,13 +2,15 @@
 #include <sstream>
 #include <unistd.h>
 
-#include "X11.h"
 #include "config.h"
+
+#include "X11.h"
+#include "Daemon.h"
+
 
 using std::cout;
 using std::cerr;
 using std::endl;
-using std::ostringstream;
 
 
 /**
@@ -38,22 +40,14 @@ int main(int argc, char* argv[]){
     return 0;
   }
 
-  X11 x11;
-  InfoModules modules;
-
-  if(!x11.isValid()){
-    cerr << "Cannot open display!" << endl;
-    return 1;
-  }
-
-  for(;;sleep(SLEEP_TIME)){
-    ostringstream os;
-    os << modules;
+  try {
     if(consoleOutputMode){
-      cout << os.str() << endl;
+      Daemon<ostreamPutter> d;
     }
     else{
-      x11.set_status(os.str());
+      Daemon<X11> d;
     }
+  } catch (std::exception &e ){
+    cerr << e.what() << endl;
   }
 }
