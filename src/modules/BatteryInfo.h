@@ -5,6 +5,10 @@
 
 using std::ostream;
 
+#ifndef BATTERY_INFO_PATH
+#define BATTERY_INFO_PATH "/sys/class/power_supply/BAT0/capacity"
+#endif
+
 /**
  * BatteryInfo InfoSource
  *
@@ -14,6 +18,6 @@ using std::ostream;
 
 struct BatteryInfo : public FilesystemSource {
   BatteryInfo() :
-    FilesystemSource("/sys/class/power_supply/BAT0/capacity") {}
+    FilesystemSource(BATTERY_INFO_PATH) {}
 };
 
