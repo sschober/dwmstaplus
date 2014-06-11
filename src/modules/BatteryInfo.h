@@ -4,10 +4,15 @@
 #include "FilesystemSource.h"
 
 using std::ostream;
+using std::string;
 
-#ifndef BATTERY_INFO_PATH
-#define BATTERY_INFO_PATH "/sys/class/power_supply/BAT0/capacity"
-#endif
+struct PathSupplier {
+  virtual string get() const = 0;
+};
+
+struct Bat0Supplier : public PathSupplier {
+  string get() const { return "/sys/class/power_supply/BAT0/capacity"; }
+};
 
 /**
  * BatteryInfo InfoSource
@@ -16,8 +21,9 @@ using std::ostream;
  *
  */
 
+template <class PS = Bat0Supplier>
 struct BatteryInfo : public FilesystemSource {
   BatteryInfo() :
-    FilesystemSource(BATTERY_INFO_PATH) {}
+    FilesystemSource(PS().get()) {}
 };
 
