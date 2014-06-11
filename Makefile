@@ -2,6 +2,7 @@
 
 include config.mk
 
+DEPS = $(wildcard *.h src/*.h src/modules/*.h)
 SRC = ${NAME}.cc
 
 all: options ${NAME}
@@ -18,7 +19,7 @@ options:
 
 ${OBJ}: config.mk
 
-${NAME}: ${SRC}
+${NAME}: ${SRC} ${DEPS}
 	@${CC} -o $@ ${SRC} ${CPPFLAGS} ${CFLAGS} ${LDFLAGS}
 
 clean:
