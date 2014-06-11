@@ -2,7 +2,7 @@
 
 include config.mk
 
-DEPS = $(wildcard *.h src/*.h src/modules/*.h)
+DEPS = $(wildcard *.h src/*.h src/modules/*.h src/decorators/*.h)
 SRC = ${NAME}.cc
 
 all: options ${NAME}
