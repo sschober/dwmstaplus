@@ -1,10 +1,6 @@
 NAME = dwmstaplus
 VERSION = 1.0
 
-# Customize below to fit your system
-
-SLEEP_TIME=2
-
 # paths
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
@@ -17,7 +13,7 @@ INCS = -I src/ -I src/modules
 LIBS = -L${X11LIB} -lX11
 
 # flags
-CPPFLAGS = -DSLEEP_TIME=${SLEEP_TIME} -DVERSION=\"${VERSION}\" ${INCS}
+CPPFLAGS = -DNAME=\"${NAME}\" -DVERSION=\"${VERSION}\" ${INCS}
 CFLAGS = -std=c++11
 LDFLAGS = ${LIBS}
 
