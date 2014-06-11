@@ -34,13 +34,13 @@ requirements.
 Currently there are the following `InfoSource`s:
 
 - `BatteryInfo` - shows remaining capacity of `BAT0` (can be
-  configured via `BATTERY_INFO_PATH`
+  configured via `BATTERY_INFO_PATH`)
 - `LoadInfo` - shows system load averages as read from
   `/proc/loadavg`
 - `MemInfo` - shows free memory as read from `/proc/meminfo` in MB
   (conversion can be disabled by undefining
   `MEM_FREE_INFO_HUMAN_READABLE`)
-- `TimeInfo` - shows calendar week (can by undefining
+- `TimeInfo` - shows calendar week (can be disabled by undefining
   `TIME_INFO_SHOW_CALENDAR_WEEK`), date and time
 
 # Extending
