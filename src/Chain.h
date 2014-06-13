@@ -1,18 +1,18 @@
 #pragma once
 
 #include <string>
-#include <ostream>
 
 using std::string;
-using std::ostream;
 
+
+char DEFAULT_DELIMITER[] = "  ";
 /**
  * Utility template to chain InfoSources
  *
  * For usage example see `config.h`
  *
  */
-template <class T, class U>
+template <class T, class U, const char *delim = DEFAULT_DELIMITER>
 class Chain {
   // When an instance of this chain element is created we create
   // instances of our children as well.
@@ -20,9 +20,8 @@ class Chain {
   T t;
 
 public:
-  // TODO: Make delimiter configurable (maybe template parameter)
-  friend inline ostream& operator<<( ostream &os, const Chain<T,U> &c ){
-    return os << c.t << " | " << c.u;
+  string get() const {
+    return string( t.get() + delim + u.get() );
   }
 };
 

@@ -1,8 +1,6 @@
 #pragma once
-#include <sstream>
 #include <stdexcept>
 
-using std::ostringstream;
 using std::cout;
 using std::cerr;
 using std::endl;
@@ -24,9 +22,7 @@ public:
     }
 
     for(;;sleep(sleepTime)){
-      ostringstream os;
-      os << modules;
-      o.put(os.str());
+      o.put(modules.get());
     }
   }
 };

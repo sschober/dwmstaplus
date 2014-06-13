@@ -39,12 +39,35 @@ typedef FilesystemSource<MEM_FREE_PATH, RegexMatcher<MEM_FREE_REGEX> > MemFreeIn
 // size (4 digits here)
 typedef HumanReadableBytes<MemFreeInfoInKB, 4> MemFreeInfo;
 
+// We construct a time module on-the-fly.
+//
+// The innermost module BasicTimeInfo fetches the struct tm and
+// stores it in a variable. It further defines an ostringstream
+// `res` in a local variable, plus a methode `get()` to fetch a
+// string from it.
+//
+// The outer modules inherit from the inner one and can thus access
+// the variables provided by the BasicTimeInfo module. This is an
+// application of the decorator pattern.
+//
+char TIME_DELIMITER[]          = " ";
+char NULL_DELIMITER[]          = "";
+typedef TimeStr < DateStr < WeekStr < BasicTimeInfo >, TIME_DELIMITER >, NULL_DELIMITER > TimeInfo;
+
 // Defines the presence and order of information sources to be
 // displayed in the statusbar
-typedef Chain< MemFreeInfo,
-          Chain< LoadInfo,
-//            Chain< BatteryInfo,
-               TimeInfo<true>
+//
+// Each Chain-element glues two InfoSources together using a
+// standard delimiter of '|', which can also be customized using an
+// optional, third template paramter.
+
+//char DELIMITER[]          = " * ";
+typedef Chain<        MemFreeInfo,
+          Chain<      LoadInfo,
+//            Chain<  BatteryInfo,
+                      TimeInfo
 //            >
           >
-        > InfoModules;
+//        ,DELIMITER
+        >
+        InfoModules;
