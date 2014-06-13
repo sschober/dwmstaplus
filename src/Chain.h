@@ -20,7 +20,7 @@ class Chain {
   T t;
 
 public:
-  string get() const {
+  string get() {
     return string( t.get() + delim + u.get() );
   }
 };

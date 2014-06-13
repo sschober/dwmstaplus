@@ -12,7 +12,7 @@ template <class T, int limit = 5>
 class HumanReadableBytes : public T {
   T t;
   public:
-  string get() const {
+  string get() {
     string res = t.get();
     if( res.size() > limit ){
       int kbytes = stoi( res );

@@ -22,33 +22,38 @@ class BasicTimeInfo : public InfoSource {
   protected:
     struct tm *now;
     ostringstream res;
-
-  public:
-    BasicTimeInfo() {
+    virtual void _fill() {
       time_t t = time(0);
       now = localtime(&t);
+      res.str("");
+      res.clear();
       res << setfill('0');
     }
-  string get() const {
-    return res.str();
-  }
+  public:
+    string get() {
+      _fill();
+      return res.str();
+    }
 };
 
 template< class TI, const char * delim = DEFAULT_DELIMITER>
 class TimeStr: public TI {
-  public:
-    TimeStr() {
+  protected:
+  virtual void _fill() {
+    TI::_fill();
     this->res
       << setw(2) << this->now->tm_hour  << ":"
       << setw(2) << this->now->tm_min   << ":"
       << setw(2) << this->now->tm_sec
       << delim;
-    }
+  }
 };
 
 template< class TI, const char * delim = DEFAULT_DELIMITER>
-struct DateStr: public TI {
-  DateStr() {
+class DateStr: public TI {
+  protected:
+  virtual void _fill() {
+    TI::_fill();
     this->res
       << setw(2) << this->now->tm_mday  << "."
       << setw(2) << this->now->tm_mon   << "."
@@ -58,9 +63,11 @@ struct DateStr: public TI {
 };
 
 template< class TI, const char * delim = DEFAULT_DELIMITER>
-struct WeekStr: public TI {
-  WeekStr(){
+class WeekStr: public TI {
+  protected:
+    virtual void _fill(){
+      TI::_fill();
       this->res << "KW "   << ( this->now->tm_yday / 7 ) + 1
-      << delim;
-  }
+        << delim;
+    }
 };

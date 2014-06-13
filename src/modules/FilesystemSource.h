@@ -45,7 +45,7 @@ template <const char *PATH, class MATCHINGSTRATEGY = FirstLineMatcher>
 class FilesystemSource : public InfoSource {
   MATCHINGSTRATEGY ms;
   public:
-    string get() const {
+    string get() {
       ifstream file(PATH);
       if(file.good()){
         string ln;
