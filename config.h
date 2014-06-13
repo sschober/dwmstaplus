@@ -64,9 +64,9 @@ typedef TimeStr < DateStr < WeekStr < BasicTimeInfo >, TIME_DELIMITER >, NULL_DE
 //char DELIMITER[]          = " * ";
 typedef Chain<        MemFreeInfo,
           Chain<      LoadInfo,
-//            Chain<  BatteryInfo,
+            Chain<  BatteryInfo,
                       TimeInfo
-//            >
+            >
           >
 //        ,DELIMITER
         >
