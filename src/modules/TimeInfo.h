@@ -56,7 +56,7 @@ class DateStr: public TI {
     TI::_fill();
     this->res
       << setw(2) << this->now->tm_mday  << "."
-      << setw(2) << this->now->tm_mon   << "."
+      << setw(2) << this->now->tm_mon + 1  << "."
       << setw(4) << this->now->tm_year + 1900
       << delim;
   }
